@@ -1,19 +1,25 @@
 const router = require("express").Router();
 const Team = require("../models/Team");
 
-// Add
+// Add Team Member
 router.post("/", async (req, res) => {
-  const data = await Team.create(req.body);
-  res.json(data);
+  const member = await Team.create(req.body);
+  res.json(member);
 });
 
-// Get All
+// Get All Team Members
 router.get("/", async (req, res) => {
-  const data = await Team.find();
-  res.json(data);
+  const members = await Team.find();
+  res.json(members);
 });
 
-// Delete
+// Update Team Member
+router.put("/:id", async (req, res) => {
+  await Team.findByIdAndUpdate(req.params.id, req.body);
+  res.json({ msg: "Updated" });
+});
+
+// Delete Team Member
 router.delete("/:id", async (req, res) => {
   await Team.findByIdAndDelete(req.params.id);
   res.json({ msg: "Deleted" });

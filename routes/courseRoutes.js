@@ -1,19 +1,19 @@
 const router = require("express").Router();
 const Course = require("../models/Course");
 
-// Add
+// Add Course
 router.post("/", async (req, res) => {
-  const data = await Course.create(req.body);
-  res.json(data);
+  const course = await Course.create(req.body);
+  res.json(course);
 });
 
-// Get
+// Get All Courses
 router.get("/", async (req, res) => {
-  const data = await Course.find();
-  res.json(data);
+  const courses = await Course.find();
+  res.json(courses);
 });
 
-// Delete
+// Delete Course
 router.delete("/:id", async (req, res) => {
   await Course.findByIdAndDelete(req.params.id);
   res.json({ msg: "Deleted" });

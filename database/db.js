@@ -1,14 +1,12 @@
-
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      'mongodb+srv://rahejayuvraj24_db_user:yuvraj%40123@cluster1.et9ptoc.mongodb.net/?retryWrites=true&w=majority'
-    );
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("MongoDB Connected ✅");
   } catch (error) {
-    console.log(error);
+    console.log("DB Error ❌", error);
+    process.exit(1);
   }
 };
 
